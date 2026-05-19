@@ -15,7 +15,7 @@ const gallery = [
 ];
 
 const googleMapUrl = "https://www.google.com/maps/search/?api=1&query=Sushrusha+Multispeciality+Hospital+Nalanda+Nagar+Nandura+Buldhana+Maharashtra";
-const googleReviewUrl = googleMapUrl;
+const googleReviewUrl = "https://maps.app.goo.gl/7SG9tTLZ9cvnYmTR9";
 const googleRating = 4.9;
 const googleReviewCount = 132;
 
