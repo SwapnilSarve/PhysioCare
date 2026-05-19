@@ -15,6 +15,9 @@ const gallery = [
 ];
 
 const googleMapUrl = "https://www.google.com/maps/search/?api=1&query=Sushrusha+Multispeciality+Hospital+Nalanda+Nagar+Nandura+Buldhana+Maharashtra";
+const googleReviewUrl = googleMapUrl;
+const googleRating = 4.9;
+const googleReviewCount = 132;
 
 function SectionHeader({ title, subtitle }) {
   return (
@@ -46,6 +49,40 @@ function GalleryCard({ src, alt }) {
   );
 }
 
+function GoogleTrustBadge() {
+  return (
+    <div className="mt-10 overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white px-6 py-6 shadow-xl shadow-slate-200/30">
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="space-y-3">
+          <p className="text-sm font-semibold uppercase tracking-[0.32em] text-teal-600">Verified on Google</p>
+          <div className="flex items-center gap-6">
+            <div>
+              <p className="text-5xl font-bold tracking-tight text-slate-900">{googleRating.toFixed(1)}</p>
+              <p className="text-sm text-slate-500">Average rating</p>
+            </div>
+            <div className="flex items-center gap-1">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Star key={index} className={`h-5 w-5 ${index < Math.round(googleRating) ? "text-amber-500" : "text-slate-300"}`} />
+              ))}
+            </div>
+          </div>
+          <p className="max-w-xl text-sm text-slate-600">
+            Based on <span className="font-semibold text-slate-900">{googleReviewCount}+</span> verified Google reviews for Sushrusha Multispeciality Hospital.
+          </p>
+        </div>
+        <div className="flex flex-col gap-3 sm:items-end">
+          <span className="inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700">
+            Highly rated clinic
+          </span>
+          <a href={googleReviewUrl} target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-teal-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-teal-500/20 transition hover:bg-teal-700">
+            Read Google Reviews
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
@@ -73,11 +110,10 @@ export default function App() {
                 <a href="#contact" className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-teal-700 shadow-lg shadow-teal-700/20 transition hover:bg-slate-100">Book Appointment</a>
                 <a href="#services" className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-8 py-3 text-sm font-semibold text-white transition hover:bg-white/20">See Services</a>
               </div>
+              <GoogleTrustBadge />
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.15 }} className="relative mx-auto w-full max-w-xl overflow-hidden rounded-[2.5rem] border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-lg sm:p-8">
-              <div className="relative rounded-[2rem] overflow-hidden bg-slate-900">
-                <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=1200&q=80" alt="Physiotherapist working with a patient" className="h-[420px] w-full object-cover" />
-              </div>
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.15 }} className="relative mx-auto w-full max-w-[720px] overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/10 shadow-[0_28px_80px_rgba(15,23,42,0.18)] sm:h-[620px] h-[560px]">
+              <img src="/PhysioCare_.png" alt="Professional female physiotherapist" className="h-full w-full object-cover object-center" />
             </motion.div>
           </div>
         </section>
