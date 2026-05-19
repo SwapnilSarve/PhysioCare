@@ -14,6 +14,8 @@ const gallery = [
   { src: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80", alt: "Patient doing mobility training with physiotherapist guidance" },
 ];
 
+const googleMapUrl = "https://www.google.com/maps/search/?api=1&query=Sushrusha+Multispeciality+Hospital+Nalanda+Nagar+Nandura+Buldhana+Maharashtra";
+
 function SectionHeader({ title, subtitle }) {
   return (
     <div className="max-w-3xl mx-auto text-center">
@@ -139,9 +141,22 @@ export default function App() {
                   </div>
                   <div className="rounded-[1.75rem] bg-slate-950/80 p-6">
                     <p className="text-sm uppercase tracking-[0.24em] text-teal-200">Address</p>
-                    <p className="mt-2 text-lg font-semibold text-white">Sushrusha Multispeciality Hospital, Nalanda Nagar</p>
+                    <a href={googleMapUrl} target="_blank" rel="noreferrer" className="mt-2 block text-lg font-semibold text-white hover:text-teal-200">
+                      Sushrusha Multispeciality Hospital, Nalanda Nagar, Nandura, Buldhana, Maharashtra
+                    </a>
+                    <p className="mt-2 text-sm text-slate-300">Exact location on Google Maps for easy directions.</p>
                   </div>
                 </div>
+              </div>
+              <div className="mt-8 overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/90">
+                <iframe
+                  src="https://www.google.com/maps?q=Sushrusha+Multispeciality+Hospital+Nalanda+Nagar+Nandura+Buldhana+Maharashtra&z=16&output=embed"
+                  width="100%"
+                  height="260"
+                  loading="lazy"
+                  title="Sushrusha Multispeciality Hospital Google Map"
+                  className="border-0"
+                />
               </div>
             </div>
           </div>
