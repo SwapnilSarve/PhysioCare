@@ -1,5 +1,6 @@
-﻿import { motion } from "framer-motion";
-import { Phone, HeartPulse, Activity, Dumbbell, Star } from "lucide-react";
+﻿import { useState } from "react";
+import { motion } from "framer-motion";
+import { Menu, X, HeartPulse, Activity, Dumbbell, Star } from "lucide-react";
 
 
 const services = [
@@ -84,6 +85,8 @@ function GoogleTrustBadge() {
 }
 
 export default function App() {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 backdrop-blur-sm">
@@ -95,7 +98,29 @@ export default function App() {
             <a href="#gallery" className="transition hover:text-teal-600">Gallery</a>
             <a href="#contact" className="transition hover:text-teal-600">Contact</a>
           </nav>
-          <a href="#contact" className="inline-flex items-center rounded-full bg-teal-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-500/10 transition hover:bg-teal-700">Book Now</a>
+          <div className="flex items-center gap-3">
+            <a href="#contact" className="hidden rounded-full bg-teal-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-500/10 transition hover:bg-teal-700 md:inline-flex">Book Now</a>
+            <button
+              type="button"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200/80 bg-white text-slate-700 shadow-sm transition hover:border-slate-300 md:hidden"
+              onClick={() => setMobileNavOpen((open) => !open)}
+              aria-expanded={mobileNavOpen}
+              aria-label="Toggle navigation"
+            >
+              {mobileNavOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+        <div className={`border-t border-slate-200/80 bg-white/95 md:hidden ${mobileNavOpen ? "block" : "hidden"}`}>
+          <div className="mx-auto max-w-7xl px-6 py-4">
+            <nav className="grid gap-3 text-sm font-medium text-slate-700">
+              <a href="#about" onClick={() => setMobileNavOpen(false)} className="block rounded-2xl px-4 py-3 transition hover:bg-slate-100">About</a>
+              <a href="#services" onClick={() => setMobileNavOpen(false)} className="block rounded-2xl px-4 py-3 transition hover:bg-slate-100">Services</a>
+              <a href="#gallery" onClick={() => setMobileNavOpen(false)} className="block rounded-2xl px-4 py-3 transition hover:bg-slate-100">Gallery</a>
+              <a href="#contact" onClick={() => setMobileNavOpen(false)} className="block rounded-2xl px-4 py-3 transition hover:bg-slate-100">Contact</a>
+              <a href="#contact" onClick={() => setMobileNavOpen(false)} className="inline-flex items-center justify-center rounded-full bg-teal-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-teal-700">Book Now</a>
+            </nav>
+          </div>
         </div>
       </header>
       <main id="top">
@@ -112,7 +137,7 @@ export default function App() {
               </div>
               <GoogleTrustBadge />
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.15 }} className="relative mx-auto w-full max-w-[720px] overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/10 shadow-[0_28px_80px_rgba(15,23,42,0.18)] sm:h-[620px] h-[560px]">
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.15 }} className="relative mx-auto w-full max-w-[720px] overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/10 shadow-[0_28px_80px_rgba(15,23,42,0.18)] h-[360px] sm:h-[520px] lg:h-[620px]">
               <img src="/PhysioCare_.png" alt="Professional female physiotherapist" className="h-full w-full object-cover object-center" />
             </motion.div>
           </div>
